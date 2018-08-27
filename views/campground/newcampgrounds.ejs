@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container">
+    <h1 style="text-align: center;"><strong> Post Your Visit</strong></h1>
+    <div class="row">
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+         <script>tinymce.init({ selector:'textarea' });</script>
+        <div style="width:90%;margin: 0 auto;">
+           <form action="/campgrounds" method="POST">
+                <div class="form-group">
+                   <input class="form-control" type="text" placeholder="Name" name="campground[name]">
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="text" placeholder="imgUrl" name="campground[image]">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                       <textarea class="form-control" rows="10" name="campground[description]"></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <button class="btn btn-info btn-lg btn-block">Submit</button>
+                </div>
+                <a href="/campgrounds"> GoBack</a>
+            </form> 
+        </div>
+    </div>
+    
+</div>
+
+<% include ../partials/footer %>

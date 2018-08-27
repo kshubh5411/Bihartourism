@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+
+      
+<html>
+    <head>
+        <title>Resturantdekho</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="shortcut icon" type="imagepng/png" href="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Balloons-PNG/Balloons_PNG_Picture.png?m=1434276640"/>
+
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/w3css/3/w3.css">
+        
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+       
+     </head>
+    <body>
+        <!--include scroll button to top-->
+        <%include  ./scrolltop.ejs %>
+        <!--//==================================-->
+       <nav class="navbar navbar-inverse">
+           <div class="container-fluid">
+             <div class="nav navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"style="width:unset;">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+               </button>
+                 <a class="navbar-brand" href="/">Home</a></a>
+             </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+                  
+                  <ul class="nav navbar-nav">
+                     <li><a href="/campgrounds"><span class="glyphicon glyphicon-flag"></span> Campgrounds</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    
+                     <% if(!currentUser){ %>
+                      
+                      <li><a href="/register"><span class= "glyphicon glyphicon-user"></span> SignUp</a></li>
+                      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                      
+                     <% }else { %>
+                      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Signed in as <%=currentUser.username%></a></li>
+                      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                     <% }%>
+                </ul>
+             </div>
+          </div>
+      </nav>
+     
+        

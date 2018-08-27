@@ -1,0 +1,76 @@
+<% include ../partials/header %>
+ <link rel="stylesheet"  type="text/css" href="/stylesheet/show.css">
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+<div class="container">
+    <div class="row">
+        
+        
+        <div class="col-md-3" id="myScrollspy">
+           
+            <button class="btn btn-info btn-lg"><a style="color:white;" href="/campgrounds/new"> Add your Visit</a></button> 
+             <h2 class="lead">YelpCam</h2>
+            
+            <div class="list-group">
+              <a class="items" href="#showpagethumbnail"> <li class="list-group-item active">Description</li></a> 
+                <a class="items" href="#comments"><li class="list-group-item ">Comments</li></a>
+            </div>
+        </div>
+        
+        
+          <!--add map here-->
+        <div class="col-md-9">
+            <div class="thumbnail" id="showpagethumbnail">
+                <img class="img-responsive"src="<%=data.image%>">
+                <div class="caption-full">
+                    <h4 class="pull-right">Rs.800/night</h4>
+                    <a href="#" > <h3 style="padding:9px"><%=data.name%></h3></a>
+                    <hr>
+                   <h3> <strong>Description:</strong></h3>
+                    <p style="padding:0px;"> <%-data.description%></p>
+                    <hr>
+                    <strong><p><em>Submitted By: <%=data.author.username%></em></p></strong>
+                    <p><em>Dated:<%=data.created.toDateString()%></em></p>
+                    
+                    <% if(currentUser && data.author.id.equals(currentUser._id)){%>
+                    <a href="/campgrounds/<%=data._id%>/edit"><button class="btn btn-warning">Edit</button></a>
+                    <form action="/campgrounds/<%=data._id%>?_method=DELETE" method="POST" style="display:inline;">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <%}%>
+               </div>
+                
+            </div>
+            
+            <div class="well" id="comments">
+                
+                <div class="text-right">
+                     <a class="btn btn-success" href="/campgrounds/<%=data._id%>/comment/new">Add your comment</a>
+                     <hr>
+                </div>
+                
+                  <%data.comments.forEach(function(comment){ %>
+                        <div class="row">
+                          <div id="des" class="col-md-12"
+                                 <h4><strong><%=comment.author.username%></strong></h4>
+                                 <span class="pull-right"><p><em><%=comment.commentdate.toDateString()%></em></p></span>
+                                    <p> <%-comment.text%>  </p>
+                                    
+                                    <% if(currentUser && comment.author.id.equals(currentUser._id)){%>
+                                   <a href="/campgrounds/<%=data._id%>/comment/<%=comment._id%>/edit"><button class="btn btn-xs btn btn-info">edit</button></a>
+                                 
+                                   <form action="/campgrounds/<%=data._id%>/comment/<%=comment._id%>?_method=DELETE" method="POST" style="display:inline;">
+                                     
+                                   <a href="/campgrounds/<%=data._id%>/comment/<%=comment._id%>/delete"><button class="btn btn-xs btn btn-danger ">delete</button></a>
+                                   <%}%>
+                                 </form>
+                          </div>
+                        </div> 
+                 <hr>
+                 <%});%>
+                
+             </div>
+        </div>    
+    
+     </div>
+</div>
+<% include ../partials/footer %>

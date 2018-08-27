@@ -1,0 +1,92 @@
+<%  include partials/header %>
+
+<!--Landing Page-->
+
+
+<div class="container">
+        <section>
+          <img class="mySlides" src="https://images.unsplash.com/photo-1477251775044-79fd2d9533c1?ixlib=rb-0.3.5&s=f4719b27db16bd70cf472cfafea3e3a0&auto=format&fit=crop&w=1366&q=80"
+          style="width:100%;height:100%">
+          <img class="mySlides" src="https://images.unsplash.com/photo-1517868674985-0525518ae392?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3053730890eb596789102eddc38fb945&auto=format&fit=crop&w=1500&q=80"
+          style="width:100%;height:100%">
+          <img class="mySlides" src="https://images.unsplash.com/photo-1512632578888-169bbbc64f33?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=016fc989b348e1bbcc19d6f426bdc864&auto=format&fit=crop&w=1500&q=80"
+          style="width:100%;height:100%">
+          <img class="mySlides" src="https://images.unsplash.com/photo-1464817739973-0128fe77aaa1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=06a092e30348add7c1f5586ef0e01d17&auto=format&fit=crop&w=1500&q=80"
+          style="width:100%;height:100%">
+        </section>
+        <div class="container-fluid text-center">
+            <div class="row" id="row">
+                <div class="col-sm-2 sidenav">
+                    <div class="well">
+                        <div class="thumbnail">
+                        <img src="https://previews.123rf.com/images/oksananahorna/oksananahorna1711/oksananahorna171100445/90310256-vector-illustration-world-religious-signs-and-symbols-collection-in-colour-with-inscriptions-icon-de.jpg">
+                        </div>
+                    </div>
+                 </div>
+                  <div class="col-sm-8">
+                    <h1> Be Spritual</h1>
+                    <h4>For the past 15 years, I have been exposed to several wisdom traditions, seeking to understand the essence of their philosophy, the practice and methods involved, and the goal. I’ve looked into Zen, Theravada Buddhism, Occultism, Taoism, New Age, Yoga, Vedanta, etc.
+
+                     These traditions share many common practices, principles, and goals – and yet there are profound differences in approaches, beliefs, and worldviews. This post is my effort of putting it all together and presenting an overview of the common goals and practice of different spiritual paths.</h4>
+                  </div>
+                <div class="col-sm-2 sidenav">
+                    <div class="well">
+                        <div class="thumbnail">
+                        <img src="https://previews.123rf.com/images/oksananahorna/oksananahorna1711/oksananahorna171100445/90310256-vector-illustration-world-religious-signs-and-symbols-collection-in-colour-with-inscriptions-icon-de.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+<!--Css Style-->
+
+
+<style>
+body
+{
+    background-color: #0d0d0e;
+}
+ .col-sm-8{
+     background-color:#f2f2f2;
+     color:black;
+ }
+ 
+ well
+ {
+     height=230px;
+ }
+ 
+ .navbar-inverse {
+    background-color: #0f7784;
+    border-color: #080808;
+}
+#row
+{
+    margin-top: 15px;
+}
+ 
+</style>
+
+<!--Java Script Code-->
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 5000);
+}
+</script>
+
+<% include partials/footer %>

@@ -1,0 +1,43 @@
+<% include  partials/header %>
+<link rel="stylesheet" href="/stylesheet/register.css">
+<form action="/register" method="POST" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Sign Up</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+    <label for="username"><b>UserName</b></label>
+    <input type="text" placeholder="Enter UserName" name="username" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" id="Pass" required>
+    
+    <label>
+      <input type="checkbox" onclick="showPass()" name="remember" style="margin-bottom:15px"> Show Password
+    </label>
+
+    <p>By creating an account you agree to our <a href="Terms" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    <div class="clearfix">
+      <a href="/campgrounds"><button type="button" class="cancelbtn">Cancel</button></a>
+      <button type="submit" class="signupbtn">SignUp</button>
+    </div>
+  </div>
+</form>
+<!--SHOW PASSWORD-->
+
+<script>
+  function showPass()
+  {
+    var x = document.getElementById("Pass");
+    if(x.type==="password")
+    {
+      x.type="text";
+    }else{
+      x.type="password";
+    }
+  }
+
+</script>
+<!--===========================-->
+<% include partials/footer %>

@@ -1,0 +1,33 @@
+body
+{
+background-color: #d6f524;}
+a {
+    color: #0c1f30;
+    text-decoration: none !important;
+}
+img-responsive {
+    width: 100%;
+}
+p{
+    padding: 9px;
+}
+
+#des{
+    background-color:#d1bec4;
+        border: 2px solid #645757;
+    border-radius: 20px;
+}
+hr
+{
+        border-top: 1px dashed #731f1f;
+}
+.well{
+    background-color: #f7f8e4;
+    border: 2px solid #a71010;
+}
+#showpagethumbnail
+{
+    background-color: #f7f7f2;
+    border: 2px solid #403131;
+    border-radius: 8px;
+}
