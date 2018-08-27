@@ -5,7 +5,7 @@ a {
     color: #0c1f30;
     text-decoration: none !important;
 }
-img-responsive {
+img.img-responsive {
     width: 100%;
 }
 p{
