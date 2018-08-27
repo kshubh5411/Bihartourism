@@ -18,7 +18,8 @@ var express         =    require("express"),
     
     
 app.set("view engine","ejs");
-mongoose.connect("mongodb://localhost:27017/yelpcam_v6", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:27017/yelpcam_v6", { useNewUrlParser: true });
+mongoose.connect("mongodb://bihartourism:S848513@#@ds133642.mlab.com:33642/bihartourism", { useNewUrlParser: true });
 // For delete and update
 app.use(methodOverride("_method"));
 
