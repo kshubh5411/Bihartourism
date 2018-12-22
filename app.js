@@ -15,9 +15,8 @@ var express          =    require("express"),
     flash            =    require("connect-flash"),
     ejs              =    require('ejs'),
     http             =    require('http');
-
-    var server      =    http.Server(app);
-    var io          =    require('socket.io')(server);
+    var server       =    require('http').Server(app);
+    var io           =    require('socket.io')(server);
     
 
 //To make sample we can use seed data
@@ -75,7 +74,7 @@ app.use("/",authroute);
 //Make io connection===
 io.on('connection',function(socket)
   {
-   socket.on('chat',function (data) {
+       socket.on('chat',function (data) {
        io.sockets.emit('chat',data);
    });
    console.log("listening to both "+socket.id);

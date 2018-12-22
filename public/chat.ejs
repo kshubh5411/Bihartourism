@@ -1,11 +1,6 @@
 //Make connection;
-var express          =    require("express");
-var  app              =    express();
-var  http             =    require('http');
-var server      =       http.Server(app);
-var io          =    require('socket.io')(server);
-    
-var socket= io.connect("https://resturantdekho-shubhamk541.c9users.io/");
+<script>
+var socket= io();
 
 //Query DOM
 
@@ -58,3 +53,4 @@ socket.on('chat',function(data)
     i++;
     output.scrollTop=output.scrollHeight;
 });
+</script>
