@@ -1,0 +1,67 @@
+ <html>
+    <head>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="../stylesheet/chat.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" charset="utf-8"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+   </head>
+    <body>
+        <div id="chat">
+             
+             <button id="chatbtn">
+                <span class="glyphicon glyphicon-envelope"></span> chat </a>
+             </button>
+             
+        </div>
+        
+    <div id="Mymodal" class="modal">
+            <div class="container">
+              <div class="row">
+               <div class="col-md-7 col-sm-7 col-lg-7" style="
+                        width: 100%;">
+  
+	              <div class="panel panel-danger" id="panel">
+	                   <span id="close" class="glyphicon glyphicon-remove"></span>
+			        <div class="panel-heading" id="panel-heading">
+			           <h3 id="panel-title">Chats</h3>
+			           <input id="username" name="name" value="<%=currentUser.username%>" readonly style="display:none;">
+			        </div>
+		 
+		            <div class="panel-body">
+    		            <div id="output"></div>
+    				         <input id="message" type="text" name="text" class="form-control" placeholder="Write Your message here...">
+    				         <input id="button" type="submit" name="submit" class="btn btn-outline" value="Send">
+    		                 <script src="chat.js"></script>
+    	
+		            </div>
+	              </div>
+                </div>
+  
+                </div>
+           </div>
+       </div>
+    </div>
+        <script>
+            var modal=document.getElementById("Mymodal");
+            var button=document.getElementById("chatbtn");
+            var span=document.getElementById("close");
+            button.onclick=function()
+            {
+              modal.style.display="block"; 
+            }
+            span.onclick=function()
+            {
+                modal.style.display="none";
+            }
+            window.onclick=function(event)
+            {
+                if(event.target == modal)
+                {
+                    modal.style.display="none";
+                }
+            }
+        </script>
+    </body>
+</html>

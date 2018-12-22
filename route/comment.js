@@ -11,6 +11,7 @@ router.get("/campgrounds/:id/comment/new",isUserlogin,function(req,res)
    {
       if(err)
       {
+          req.flash("error",err.message);
          res.redirect("campground/campgrounds");
       }
       else
@@ -23,8 +24,11 @@ router.get("/campgrounds/:id/comment/new",isUserlogin,function(req,res)
 router.post("/campgrounds/:id/comment",isUserlogin,function(req,res)
 {
    Campground.findById(req.params.id,function(err, campground) {
-      if(err)
-      res.redirect("campground/campgrounds");
+      if(err){
+          req.flash("error",err.message);
+          res.redirect("campground/campgrounds");
+      }
+      
       else
       {
         Comment.create(req.body.comment,function(err,comment)
@@ -37,9 +41,9 @@ router.post("/campgrounds/:id/comment",isUserlogin,function(req,res)
               comment.author.id=req.user._id;
               comment.author.username=req.user.username;
               comment.save();
-              console.log(comment);
               campground.comments.push(comment);
               campground.save();
+              req.flash("success","Comment Added Successfully");
               res.redirect("/campgrounds/"+campground._id);
            }
         });
@@ -53,10 +57,11 @@ router.post("/campgrounds/:id/comment",isUserlogin,function(req,res)
 router.get("/campgrounds/:id/comment/:comment_id/edit",isOwnerShip,function (req,res) {
    Comment.findById(req.params.comment_id,function(err,foundcomment) {
        if(err)
-       res.send("Error Message");
+       req.flash("error",err.message);
        else{
-           console.log("Comment="+req.params.comment_id);
-           console.log(foundcomment);
+        //   console.log("Comment="+req.params.comment_id);
+        //   console.log(foundcomment);
+        
            res.render("comment/edit",{campground_id:req.params.id,comment:foundcomment});
        }
        
@@ -73,10 +78,12 @@ router.put("/campgrounds/:id/comment/:comment_id",function(req,res)
    {
        if(err)
        {
+           req.flash("error",err.message);
            res.redirect("/campgrounds");
        }
        else
        {
+           req.flash("success","Comment Edited");
            res.redirect("/campgrounds/"+req.params.id);
        }
        
@@ -89,9 +96,17 @@ router.delete("/campgrounds/:id/comment/:comment_id",function(req,res)
    Comment.findByIdAndRemove(req.params.comment_id,function(err,deletedData)
    {
        if(err)
-       res.redirect("back");
+       {
+           req.flash("error","Not Allowed!!");
+          res.redirect("back"); 
+       }
+       
        else
-       res.redirect("/campgrounds/"+req.params.id);
+       {
+            req.flash("success","Comment Deleted!!")
+            res.redirect("/campgrounds/"+req.params.id);
+       }
+      
        
    });
 });
@@ -114,6 +129,7 @@ function isOwnerShip(req,res,next)
                 }
                 else
                 {
+                    req.flash("error","Not Allowed!!!");
                    res.redirect("back"); 
                 }
             }
@@ -123,6 +139,7 @@ function isOwnerShip(req,res,next)
     }
     else
     {
+        req.flash("Not Allowed!!!");
         res.redirect("back");
     }
 }

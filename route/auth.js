@@ -14,24 +14,31 @@ router.get("/",function(req,res)
 
 router.get("/register",function(req, res) {
    res.render("register"); 
+  
 });
 router.post("/register",function(req, res) {
    
 
    
    var newUser= new User({username:req.body.username});
+   
    console.log(newUser);
+   
    User.register(newUser,req.body.password,function(err,user)
    {
       if(err)
       {
-         console.log("NOT REGISTER");
-         return res.render("register");
+         console.log(err.message);
+         req.flash("error",err.message);
+          res.redirect("/register");
+         
       }
       passport.authenticate("local")(req,res,function()
          {
-            console.log("ALready");
+            
+            req.flash("success","Welcome There! "+newUser.username.toUpperCase());
             res.redirect("/campgrounds");
+            
          });
    });
    
@@ -46,13 +53,16 @@ router.get("/login",function(req, res) {
 //check is this user exist or not using middleware====
 router.post("/login",passport.authenticate("local",
 {successRedirect:"/campgrounds",
- failureRedirect:"/login"}),function(req, res){
+ failureRedirect:"/login",
+ failureFlash:true
+}),function(req, res){
 });
 
 //LogOut Route==============
 
 router.get("/logout",function(req, res) {
    req.logout();
+   req.flash("success","Logged Out Successfully!!!");
    res.redirect("/");
 });
 module.exports=router;

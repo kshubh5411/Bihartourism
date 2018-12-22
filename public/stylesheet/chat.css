@@ -1,0 +1,87 @@
+
+    #chat
+    {
+        position: fixed; bottom: 85px;
+        right: 10px;
+    }
+    #chatbtn
+    {
+         background-color : #31B0D5;
+         color: white;
+         padding: 10px 20px;
+         border-radius: 4px;
+          border-color: #46b8da;
+    }
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 10px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+       }
+    .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+   #close {
+    
+        float: right;
+        font-weight: bold;
+        top: 20px;
+        right: 15px;
+        }
+
+    .close:hover,
+    .close:focus {
+     color: #000;
+     text-decoration: none;
+     cursor: pointer;
+      }
+    #output
+	 {
+	     width:100%;
+         height:400px;
+         background-color:white;
+         overflow:scroll;
+	 }
+	 #panel
+	 {
+	     float: right;
+         width: 65%;
+         margin-right: 4px;
+	     background-color: #0a7186;
+	 }
+	 #message
+	 {
+	         color: #106efa;
+             background-color:white;
+	         height: 54px;
+	         margin-top: 5px;
+             margin-bottom: 5px;
+	 }
+	 #panel-heading {
+    color: #1e1b1b;
+    background-color: #f0e529;
+    border-color: #190eb4;
+    }
+    #panel-title
+    {
+        margin-top: 5px;
+        font-size: 20px;
+    }
+    #button
+    {
+        background-color: orange;
+        width: 100%;
+        font-weight: bold;
+        font-size:20px;
+    }

@@ -13,14 +13,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/w3css/3/w3.css">
-        
+        <link rel="stylesheet" href="../stylesheet/header.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
        
      </head>
     <body>
         <!--include scroll button to top-->
         <%include  ./scrolltop.ejs %>
-        <!--//==================================-->
+        <!--==================================-->
        <nav class="navbar navbar-inverse">
            <div class="container-fluid">
              <div class="nav navbar-header">
@@ -34,8 +34,18 @@
               <div class="collapse navbar-collapse" id="myNavbar">
                   
                   <ul class="nav navbar-nav">
-                     <li><a href="/campgrounds"><span class="glyphicon glyphicon-flag"></span> Campgrounds</a></li>
+                     <li><a href="/campgrounds"><span class="glyphicon glyphicon-flag"></span>Visiting Place </a></li>
                 </ul>
+                
+                <div class="dropdown">
+                    <button class="dropbtn">District</button>
+                    <div class="dropdown-content">
+                        <a href="#">Saran</a>
+                        <a href="#">Saran</a>
+                        <a href="#">Saran</a>
+                    </div>
+                </div>
+                
                 <ul class="nav navbar-nav navbar-right">
                     
                      <% if(!currentUser){ %>
@@ -50,6 +60,29 @@
                 </ul>
              </div>
           </div>
+
       </nav>
+                <%if(error && error.length>0){%>
+          <div class="container" id="message">
+              <div class="alert alert-danger">
+                  <p><%=error%></p>
+              </div>
+              
+          </div>
+          <%}%>
+          <%if(success && success.length>0){%>
+          <div class="container" id="message2">
+              <div class="alert alert-success">
+                  <p><%=success%></p>
+              </div>
+              
+          </div>
+          <%}%>
+          <script> var timeout = 2000; 
+
+          $('#message2').hide(5000);
+          $('#message').hide(5000);
+          
+          </script>
      
         

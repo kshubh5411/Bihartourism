@@ -15,20 +15,29 @@ router.get("/",isUserlogin,function(req,res)
    });
   
 });
+
+//Route to index;
+ 
+router.get("/campgrounds/chat",function(req,res)
+  {
+     res.render("/campgrounds");
+  });
 router.post("/",isUserlogin,function(req,res)
 {
    
    Campground.create(req.body.campground,function(err,campgrounddata)
    {
       if(err)
-      console.log(err);
+      {
+         req.flash("error","Something Wrong!!");
+      }
       else
       {
          campgrounddata.author.username=(req.user.username);
          campgrounddata.author.id=(req.user.id);
          campgrounddata.save();
          
-         console.log(campgrounddata);
+         req.flash("success","Items Added Successfully");
          res.redirect("/campgrounds");
       }
       
@@ -44,12 +53,14 @@ router.get("/:id",isUserlogin,function(req, res) {
    Campground.findById(req.params.id).populate("comments").exec(function(err,campgrounddata)
    {
       console.log(req.params.id);
-      if(err)
-      res.send("Campgrounds not found!!!!!!!!!!!");
+      if(err){
+         req.flash("error","Campground not Found!!");
+      }
+      
       else
       
       {
-        
+       req.flash("success","Comment Successfully Added") 
       res.render("campground/showcampground",{data:campgrounddata});}
       
    });
@@ -72,11 +83,17 @@ router.put("/:id",checkUser,function(req,res)
 {
    Campground.findByIdAndUpdate(req.params.id,req.body.campground,function(err,updatedData)
    {
-      if(err)
-      res.render("campground/edit");
+      if(err){
+         req.flash("error","Something Error");
+         res.render("campground/edit");
+      }
+      
       else
-   
+   {
+      req.flash("success","Updated!!!!!");
       res.redirect("/campgrounds/"+req.params.id);
+   }
+      
    });
    
 });
@@ -90,9 +107,15 @@ router.delete("/:id",function(req,res)
    {
       
       if(err)
+      {
+      req.flash("success","Items Not Deleted")
       res.redirect("/campgrounds/"+req.params.id);
-      else
-      res.redirect("/campgrounds");
+         
+      }
+      else{
+         
+      req.flash("success","Item Deleted")
+      res.redirect("/campgrounds");}
    });
    
 });
@@ -102,8 +125,10 @@ function checkUser(req,res,next)
    if(req.isAuthenticated())
    {
       Campground.findById(req.params.id,function(err, campground) {
-          if(err)
-          res.send("Not Login");
+          if(err){
+             
+             req.flash("error","Items Not Found!!");
+             res.send("Not Login");}
           else
           {
              if(campground.author.id.equals(req.user._id))
@@ -111,12 +136,18 @@ function checkUser(req,res,next)
                return next();
              }
              else
-             res.send("No permission");
+             {
+                
+             req.flash("error","Permission Denied!!")
+             res.send("No permission");}
           }
       });
    }
    else
-   res.redirect("back");
+   {
+      req.flash("error","User Not Found!!!!");
+      res.redirect("back");
+   }
 }
 
 
@@ -126,6 +157,7 @@ function isUserlogin(req,res,next)
 {
    if(req.isAuthenticated())
    return next();
+   req.flash("error","You have to log in First");
    res.redirect("/login");
 }
 module.exports=router;
