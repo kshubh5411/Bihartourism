@@ -1,6 +1,6 @@
 //Make connection;
 var io          =    require('socket.io');
-var socket= io.connect("https://resturantdekho-shubhamk541.c9users.io/campgrounds");
+var socket= io.connect("https://bihartourism.herokuapp.com/campgrounds");
 
 //Query DOM
 
