@@ -1,4 +1,5 @@
 //Make connection;
+var io          =    require('socket.io')(server);
 var socket= io.connect("https://resturantdekho-shubhamk541.c9users.io/");
 
 //Query DOM
